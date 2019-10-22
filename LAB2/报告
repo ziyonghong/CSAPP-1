@@ -11,7 +11,7 @@ Dump of assembler code for function phase_1:
    0x08048f62 <+1>:	mov    %esp,%ebp  //把esp赋值给ebp
    0x08048f64 <+3>:	sub    $0x18,%esp   //0x18赋值给esp	
    0x08048f67 <+6>:	movl   $0x804a15c,0x4(%esp)  //把内存中地址为$0x804a15c的内容赋值给*（esp+4）
-   0x08048f6f <+14>:	mov    0x8(%ebp),%eax     //*（esp+8）=》eax 就是输入的字符串  （字符串的理由：在后面的代码里，它至于一个对于内存中的内容相等。如果是一个数字或者char的话，也太简单了。我就先猜了是字符串。后来用gdb读一下 果然是字符串。当然这里如果不是字符串也没问题的，只是这样就相对简单。）
+   0x08048f6f <+14>:	mov    0x8(%ebp),%eax     //*（esp+8）=》eax 就是输入的字符串  （字符串的理由：在后面的代码）
    0x08048f72 <+17>:	mov    %eax,(%esp)    //eax的值赋值给*esp
    0x08048f75 <+20>:	call   0x8048fab <strings_not_equal>  //比较两字符串是否相等，如果相等令eax为0 否则为1(这里我是根据前后逻辑关系推测的！严谨的讲 可以反汇编这个函数 具体看其中值的具体变化）
    0x08048f7a <+25>:	test   %eax,%eax     
@@ -47,8 +47,7 @@ Dump of assembler code for function phase_2:
    0x08048d7c <+18>:	mov    %eax,(%esp)    前面几行 就是初始化与说明这几个数字在栈中的具体地址分布情况 参照图  这里再说明
    0x08048d7f <+21>:	call   0x804910b <read_six_numbers>    这里是关键！！读取6个数据，说明这个函数的密码很有可能就是6个数字
    0x08048d84 <+26>:	cmpl   $0x0,-0x20(%ebp)
-   0x08048d88 <+30>:	jne    0x8048d90 <phase_2+38>   这里说明-0x20(%ebp)的值等于0
-（+38为炸弹）
+   0x08048d88 <+30>:	jne    0x8048d90 <phase_2+38>   这里说明-0x20(%ebp)的值等于（+38为炸弹）
    0x08048d8a <+32>:	cmpl   $0x1,-0x1c(%ebp)
    0x08048d8e <+36>:	je     0x8048d95 <phase_2+43>  说明-0x1c(%ebp)等于1
    0x08048d90 <+38>:	call   0x80490d1 <explode_bomb>
