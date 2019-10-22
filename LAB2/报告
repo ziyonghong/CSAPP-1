@@ -10,8 +10,7 @@ Dump of assembler code for function phase_1:
    0x08048f61 <+0>:	push   %ebp   ///压栈  ebp为栈指针 esp为栈指针
    0x08048f62 <+1>:	mov    %esp,%ebp  //把esp赋值给ebp
    0x08048f64 <+3>:	sub    $0x18,%esp   //0x18赋值给esp	
-   0x08048f67 <+6>:	movl   $0x804a15c,0x4(%esp)   
-//把内存中地址为$0x804a15c的内容赋值给*（esp+4）
+   0x08048f67 <+6>:	movl   $0x804a15c,0x4(%esp)  //把内存中地址为$0x804a15c的内容赋值给*（esp+4）
    0x08048f6f <+14>:	mov    0x8(%ebp),%eax     //*（esp+8）=》eax 就是输入的字符串  （字符串的理由：在后面的代码里，它至于一个对于内存中的内容相等。如果是一个数字或者char的话，也太简单了。我就先猜了是字符串。后来用gdb读一下 果然是字符串。当然这里如果不是字符串也没问题的，只是这样就相对简单。）
    0x08048f72 <+17>:	mov    %eax,(%esp)    //eax的值赋值给*esp
    0x08048f75 <+20>:	call   0x8048fab <strings_not_equal>  //比较两字符串是否相等，如果相等令eax为0 否则为1(这里我是根据前后逻辑关系推测的！严谨的讲 可以反汇编这个函数 具体看其中值的具体变化）
@@ -30,7 +29,7 @@ End of assembler dump.
  
 读出数据{ We have to stand with our North Korean allies.}
 (竟然结果是这玩意！！！中朝真是世代友好啊= =）
-然后使用run命令，测试是否成功？
+ 然后使用run命令，测试是否成功？
  
 测试成功
 
